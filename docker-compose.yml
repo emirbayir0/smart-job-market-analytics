@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  market_tracker:
+    build: .
+    container_name: smart_market_tracker
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - SCRAPE_INTERVAL_HOURS=6
+      - DATABASE_URL=sqlite:////app/data/market_tracker.db
+    restart: unless-stopped
